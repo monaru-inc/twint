@@ -34,10 +34,10 @@ class Token:
                 "https": "lfcxgkqs-dest:xgptzkdj1say@45.94.46.240",
                 "https": "lfcxgkqs-dest:xgptzkdj1say@171.22.145.230",
             }
-            req = self._session.prepare_request(requests.Request('GET', self.url, proxies=proxies))
+            req = self._session.prepare_request(requests.Request('GET', self.url))
             logme.debug(f'Retrieving {req.url}')
             try:
-                r = self._session.send(req, allow_redirects=True, timeout=self._timeout)
+                r = self._session.send(req, allow_redirects=True, timeout=self._timeout, proxies=proxies)
             except requests.exceptions.RequestException as exc:
                 if attempt < self._retries:
                     retrying = ', retrying'
