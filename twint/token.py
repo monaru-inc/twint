@@ -19,6 +19,7 @@ class Token:
     def __init__(self, config):
         self._session = requests.Session()
         self._session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0'})
+        self._session.proxies.update({"http": "http://lfcxgkqs-dest:xgptzkdj1say@45.94.46.240:80"})
         self.config = config
         self._retries = 5
         self._timeout = 10
@@ -27,17 +28,10 @@ class Token:
     def _request(self):
         for attempt in range(self._retries + 1):
             # The request is newly prepared on each retry because of potential cookie updates.
-            proxies = {
-                "http": "http://lfcxgkqs-dest:xgptzkdj1say@45.137.195.158:80",
-                "http": "http://lfcxgkqs-dest:xgptzkdj1say@23.254.113.105:80",
-                "http": "http://lfcxgkqs-dest:xgptzkdj1say@45.15.223.142:80",
-                "http": "http://lfcxgkqs-dest:xgptzkdj1say@45.94.46.240:80",
-                "http": "http://lfcxgkqs-dest:xgptzkdj1say@171.22.145.230:80",
-            }
             req = self._session.prepare_request(requests.Request('GET', self.url))
             logme.debug(f'Retrieving {req.url}')
             try:
-                r = self._session.send(req, allow_redirects=True, timeout=self._timeout, proxies=proxies)
+                r = self._session.send(req, allow_redirects=True, timeout=self._timeout)
             except requests.exceptions.RequestException as exc:
                 if attempt < self._retries:
                     retrying = ', retrying'
