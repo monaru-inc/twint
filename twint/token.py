@@ -62,10 +62,11 @@ class Token:
         logme.debug('Retrieving guest token')
         res = self._request()
         match = re.search(r'\("gt=(\d+);', res.text)
-        if match:
-            logme.debug('Found guest token in HTML')
-            self.config.Guest_token = str(match.group(1))
-        else:
-            # self.config.Guest_token = None
-            self.config.Guest_token = "1343643956085665800"
-            raise RefreshTokenException('Could not find the Guest token in HTML')
+        self.config.Guest_token = "1343643956085665800"
+        # if match:
+        #     logme.debug('Found guest token in HTML')
+        #     # self.config.Guest_token = str(match.group(1))
+        # else:
+        #     # self.config.Guest_token = None
+        #     self.config.Guest_token = "1343643956085665800"
+        #     raise RefreshTokenException('Could not find the Guest token in HTML')
