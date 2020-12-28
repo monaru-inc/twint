@@ -28,11 +28,11 @@ class Token:
         for attempt in range(self._retries + 1):
             # The request is newly prepared on each retry because of potential cookie updates.
             proxies = {
-                "https": "lfcxgkqs-dest:xgptzkdj1say@45.137.195.158",
-                "https": "lfcxgkqs-dest:xgptzkdj1say@23.254.113.105",
-                "https": "lfcxgkqs-dest:xgptzkdj1say@45.15.223.142",
-                "https": "lfcxgkqs-dest:xgptzkdj1say@45.94.46.240",
-                "https": "lfcxgkqs-dest:xgptzkdj1say@171.22.145.230",
+                "https": "https://lfcxgkqs-dest:xgptzkdj1say@45.137.195.158",
+                "https": "https://lfcxgkqs-dest:xgptzkdj1say@23.254.113.105",
+                "https": "https://lfcxgkqs-dest:xgptzkdj1say@45.15.223.142",
+                "https": "https://lfcxgkqs-dest:xgptzkdj1say@45.94.46.240",
+                "https": "https://lfcxgkqs-dest:xgptzkdj1say@171.22.145.230",
             }
             req = self._session.prepare_request(requests.Request('GET', self.url))
             logme.debug(f'Retrieving {req.url}')
